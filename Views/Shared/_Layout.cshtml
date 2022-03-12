@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EtecTube</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="~/img/favicon/site.webmanifest">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <header class="header">
+        <div class="logo left">
+            <i id="menu" class="material-icons" onclick="ShowHideSideBar()">menu</i>
+            <a asp-action="Index" title="Página inicial do EtecTube">
+                <img src="~/img/logo.png" alt="Logo do EtecTube" />
+            </a>
+        </div>
+        <div class="search center">
+            <form action="">
+                <input type="text" placeholder="Pesquisar" />
+                <button><i class="material-icons">search</i></button>
+            </form>
+            <i class="material-icons mic">mic</i>
+        </div>
+        <div class="icons right">
+            <i class="material-icons">videocam</i>
+            <i class="material-icons">apps</i>
+            <i class="material-icons">notifications</i>
+            <i class="material-icons display-this">account_circle</i>
+        </div>
+    </header>
+    <main>
+        <div id="sideBar" class="side-bar">
+            <div class="nav">
+                <a class="nav-link active" asp-action="Index">
+                    <i class="material-icons">home</i>
+                    <span>Início</span>
+                </a>
+                <a class="nav-link">
+                    <i class="material-icons">local_fire_department</i>
+                    <span>Explorar</span>
+                </a>
+                <a class="nav-link">
+                    <i class="material-icons">subscriptions</i>
+                    <span>Inscrições</span>
+                </a>
+                <hr>
+                <a class="nav-link">
+                    <i class="material-icons">library_add_check</i>
+                    <span>Biblioteca</span>
+                </a>
+                <a class="nav-link">
+                    <i class="material-icons">history</i>
+                    <span>Histórico</span>
+                </a>
+                <a class="nav-link">
+                    <i class="material-icons">play_arrow</i>
+                    <span>Seus Vídeos</span>
+                </a>
+                <a class="nav-link">
+                    <i class="material-icons">watch_later</i>
+                    <span>Assistir Depois</span>
+                </a>
+                <a class="nav-link">
+                    <i class="material-icons">thumb_up</i>
+                    <span>Vídeos Marcados com "Gostei"</span>
+                </a>
+            </div>
+        </div>
+        <div class="content">
+            @RenderBody()
+        </div>
+    </main>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

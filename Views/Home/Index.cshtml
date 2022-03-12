@@ -1,0 +1,30 @@
+﻿@model IEnumerable<EtecTube.Models.Video>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/index.css" />
+}
+
+<div class="videos">
+    @foreach (var video in Model)
+    {
+        <!-- Vídeo -->
+        <div class="video">
+            <div class="thumbnail">
+                <img src="@Url.Content(video.Thumbnail)" alt="@video.Name" />
+            </div>
+            <div class="details">
+                <div class="author">
+                    <img src="@Url.Content(video.Channel.ChannelPicture)" alt="@video.Channel.Name" />
+                </div>
+                <div class="title">
+                    <h3>@video.Name</h3>
+                    <a href="">@video.Channel.Name</a>
+                    <span>3M Visualizações • @video.PassedTime</span>
+                </div>
+            </div>
+        </div>
+    }
+</div>
