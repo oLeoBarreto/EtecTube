@@ -1,0 +1,24 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<EtecTube.Models.User> SignInManager
+@inject UserManager<EtecTube.Models.User> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <a asp-area="Identity" asp-page="/Account/Manage/Index">
+        @if (UserManager.GetUserAsync(User).Result.ProfilePicture != null)
+        {
+            <img style="width:40px;height:40px;object-fit:cover;border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(
+                    UserManager.GetUserAsync(User).Result.ProfilePicture))">
+        }
+        else
+        {
+            <i class="material-icons display-this">account_circle</i>
+        }
+    </a>
+}
+else
+{
+    <a asp-area="Identity" asp-page="/Account/Login">
+        <i class="material-icons display-this">account_circle</i>
+    </a>
+}

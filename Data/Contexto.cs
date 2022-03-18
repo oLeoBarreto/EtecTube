@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -79,6 +80,7 @@ namespace EtecTube.Data
                 }
             );
             var hash = new PasswordHasher<User>();
+            byte[] avatarPic = File.ReadAllBytes(Directory.GetCurrentDirectory() + @"/wwwroot/img/avatar.png");
             modelBuilder.Entity<User>().HasData(
                 new User{
                     Id = ADMIN_ID,
@@ -90,7 +92,8 @@ namespace EtecTube.Data
                     NormalizedEmail = "ADMIN@ETECTUBE.COM.BR",
                     EmailConfirmed = true,
                     PasswordHash = hash.HashPassword(null, "123456"),
-                    SecurityStamp = hash.GetHashCode().ToString()
+                    SecurityStamp = hash.GetHashCode().ToString(),
+                    ProfilePicture = avatarPic
                 }
             );
             modelBuilder.Entity<IdentityUserRole<string>>().HasData(
